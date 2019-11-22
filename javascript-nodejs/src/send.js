@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 
-var amqp = require('amqplib/callback_api');
+import amqp from 'amqplib/callback_api' 
 
-amqp.connect('amqp://localhost', function(error0, connection) {
+amqp.connect('amqp://localhost', (error0, connection) => {
     if (error0) {
         throw error0;
     }
@@ -11,8 +11,8 @@ amqp.connect('amqp://localhost', function(error0, connection) {
             throw error1;
         }
 
-        var queue = 'hello';
-        var msg = 'Hello World!';
+        const queue = 'hello';
+        const msg = 'Hello World!';
 
         channel.assertQueue(queue, {
             durable: false
@@ -21,7 +21,7 @@ amqp.connect('amqp://localhost', function(error0, connection) {
 
         console.log(" [x] Sent %s", msg);
     });
-    setTimeout(function() {
+    setTimeout( () => {
         connection.close();
         process.exit(0);
     }, 500);
